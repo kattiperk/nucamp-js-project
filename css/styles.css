@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+#colorInput {
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+#colorDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 500px;
+}
+.color-display-wrapper {
+    background-color: transparent;
+width: 300px;
+height: 200px;
+border: 1px solid #f1f1f1;
+perspective: 1000px;
+}
+.colorBox {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+}
