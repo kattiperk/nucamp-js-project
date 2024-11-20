@@ -1,32 +1,61 @@
 const colorInput = document.getElementById('colorInput');
-        const colorDisplay = document.getElementById('colorDisplay');
-
+const colorDisplay = document.getElementById('colorDisplay');
 const colorBox = document.getElementsByClassName('colorBox');
 
-        colorInput.addEventListener('keyup', function(event) {
-            if (event.key === 'Enter' && colorInput.value) {
-                const colorName = colorInput.value;
+colorInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter' && colorInput.value) {
+        const colorName = colorInput.value.toLowerCase();
+        const hexValue = colorNameToHex(colorName);
+
+        if (!hexValue) {
+            alert("Invalid color name. Please try again!");
+            colorInput.value = '';
+            return;
+        }
                 
-                // Create a color box element
-                const colorBox = document.createElement('div');
-                colorBox.classList.add('colorBox');
-                colorBox.style.backgroundColor = colorName;
-                colorBox.textContent = colorName;
+        // Create flip wrapper
+        const flipBoxWrapper = document.createElement('div');
+        flipBoxWrapper.classList.add('flip-box-wrapper');
+                
+        // Create colorbox wrapper
+        const colorBoxWrapper = document.createElement('div');
+        colorBoxWrapper.classList.add('color-box-wrapper');
 
-                // Append the new color box to the display
-                colorDisplay.appendChild(colorBox);
+        // Create a color box element
+        const colorBox = document.createElement('div');
+        colorBox.classList.add('colorBox');
+        colorBox.style.backgroundColor = colorName;
+        colorBox.textContent = colorName;
 
-                // Clear the input field
-                colorInput.value = '';
+        // Append the new color box to the display
+        flipBoxWrapper.appendChild(colorBoxWrapper);
+        colorBoxWrapper.appendChild(colorBox);
+        colorDisplay.appendChild(flipBoxWrapper);
 
-                // Creating back side of the card
-                const colorBoxBack = document.createElement('div');
-                colorBoxBack.classList.add('colorBox-back');
-                colorDisplay.appendChild(colorBoxBack);
-            }
+        // Clear the input field
+        colorInput.value = '';
+
+        // Creating back side of the card
+        colorBox.addEventListener('mouseover', function() {
+            const colorBox = colorBoxWrapper.querySelector('.colorBox');
+            colorBox.textContent = hexValue;
         });
 
-        function colorNameToHex(color) {
+        colorBox.addEventListener('mouseout', function() {
+            const colorBox = colorBoxWrapper.querySelector('.colorBox');
+            colorBox.textContent = colorName;
+        });
+
+        if(colorName === 'white') {
+            colorBox.style.borderWidth = '2px';
+            colorBox.style.borderStyle = 'solid';
+            colorBox.style.borderColor = 'black';
+            colorBox.style.color = 'black';
+        }
+    }
+});
+
+function colorNameToHex(color) {
     const colors = {
         aliceblue: "#F0F8FF",
         antiquewhite: "#FAEBD7",
