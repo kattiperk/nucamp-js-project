@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-
+/* All */
 ::placeholder {
     color: #444;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
@@ -7,25 +7,9 @@
 input:focus::placeholder {
     color: transparent;
     text-shadow: none;
-  }
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    font-family: "Audiowide", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: #444;
 }
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    max-width: 540px;
-    width: 100%;
-    text-align: center;
-}
-#colorInput {
+/* General */
+input {
     margin-bottom: 20px;
     padding: 12px;
     font-size: 14px;
@@ -38,54 +22,43 @@ body {
     border-radius: 24px;
     outline: none;
 }
-#colorInput:active,
-#colorInput:focus {
+input:active,
+input:focus {
     box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.25) inset;
 }
-#colorDisplay {
+/* ---------- */
+body {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    font-size: 12px;
-}
-.flip-box-wrapper {
-width: 100px;
-height: 100px;
-/* perspective: 1000px; */
-}
-    .color-box-wrapper {
-        position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-    }
-
-    /* .flip-box-wrapper:hover .color-box-wrapper {
-        transform: rotateY(180deg);
-      } */
-
-      /* .colorBox {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden; Safari
-        backface-visibility: hidden;
-      } */
-
-      /* .colorBox-back {
-        transform: rotateY(180deg);
-      } */
-      
-.colorBox,
-.colorBox-back {
-    width: 100px;
-    height: 100px;
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px;
+    margin-top: 50px;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #444;
+}
+.color-display-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 540px;
+    width: 100%;
     text-align: center;
 }
+    .color-display-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+        font-size: 12px;
+    }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            text-align: center;
+        }

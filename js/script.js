@@ -1,6 +1,5 @@
 const colorInput = document.getElementById('colorInput');
 const colorDisplay = document.getElementById('colorDisplay');
-const colorBox = document.getElementsByClassName('colorBox');
 
 colorInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter' && colorInput.value) {
@@ -12,49 +11,42 @@ colorInput.addEventListener('keyup', function(event) {
             colorInput.value = '';
             return;
         }
-                
-        // Create flip wrapper
-        const flipBoxWrapper = document.createElement('div');
-        flipBoxWrapper.classList.add('flip-box-wrapper');
-                
-        // Create colorbox wrapper
-        const colorBoxWrapper = document.createElement('div');
-        colorBoxWrapper.classList.add('color-box-wrapper');
 
         // Create a color box element
         const colorBox = document.createElement('div');
-        colorBox.classList.add('colorBox');
+        colorBox.classList.add('color-box');
         colorBox.style.backgroundColor = colorName;
         colorBox.textContent = colorName;
 
-        // Append the new color box to the display
-        flipBoxWrapper.appendChild(colorBoxWrapper);
-        colorBoxWrapper.appendChild(colorBox);
-        colorDisplay.appendChild(flipBoxWrapper);
-
-        // Clear the input field
-        colorInput.value = '';
-
-        // Creating back side of the card
-        colorBox.addEventListener('mouseover', function() {
-            const colorBox = colorBoxWrapper.querySelector('.colorBox');
-            colorBox.textContent = hexValue;
-        });
-
-        colorBox.addEventListener('mouseout', function() {
-            const colorBox = colorBoxWrapper.querySelector('.colorBox');
-            colorBox.textContent = colorName;
-        });
-
-        if(colorName === 'white') {
+        // Special style for white color
+        if (colorName === 'white') {
             colorBox.style.borderWidth = '2px';
             colorBox.style.borderStyle = 'solid';
             colorBox.style.borderColor = 'black';
             colorBox.style.color = 'black';
+        } else {
+            colorBox.style.color = 'white';
         }
+
+        // Creating text change inside color box
+        colorBox.addEventListener('mouseover', function() {
+            colorBox.textContent = hexValue;
+        });
+
+
+        colorBox.addEventListener('mouseout', function() {
+            colorBox.textContent = colorName;
+        });
+
+        // Append the new color box to the display
+        colorDisplay.appendChild(colorBox);
+
+        // Clear the input field
+        colorInput.value = '';
     }
 });
 
+// Object with color names and hex code
 function colorNameToHex(color) {
     const colors = {
         aliceblue: "#F0F8FF",
